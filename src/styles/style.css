@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
+
+html {
+    box-sizing: border-box;
+    font-family: "Luckiest Guy", cursive;
+    position: fixed;
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.ball {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    transform: scale(1);
+    transition: all ease-in-out;
+    cursor: pointer;
+    position: absolute;
+    width: 20vw;
+    height: 20vh;
+    background: url("./circle.svg") no-repeat 50% / contain;
+}
+
+.ball.hit {
+    animation: hit 0.3s ease-out both;
+    animation-duration: 0.3s !important;
+}
+
+.ball.animating {
+    animation: float 12s linear both;
+}
+
+.mission {
+    overflow: hidden;
+    background: #1c92d2;
+    background: linear-gradient(to bottom, #f2fcfe, #1c92d2);
+
+    position: relative;
+    width: 100vw;
+    height: 200vh;
+}
+
+@keyframes hit {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+@keyframes float {
+    0% {
+        opacity: 0;
+        transform: translateY(200%);
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-1000%);
+    }
+}
+
+@keyframes messageDisplay {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3);
+    }
+}
+
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    text-shadow: -2px 4px 0 #fff;
+    color: yellow;
+    font-size: 200px;
+    z-index: -1;
+}
+
+.message.animated {
+    z-index: 99;
+    animation: messageDisplay 1s ease;
+}
